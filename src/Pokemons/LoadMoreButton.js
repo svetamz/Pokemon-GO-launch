@@ -20,8 +20,4 @@ background-color: #2196F3;
 border-radius: 10px;
 margin-top:40px;
 color: white;
-cursor: pointer;
-&:hover{
-  background-color: #a6d1f4;
-}
 `

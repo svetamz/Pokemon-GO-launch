@@ -43,3 +43,15 @@ export async function getPokemonTypes(pokemonId) {
       console.error('Error fetching Pokemon types:', error);
     }
   };
+
+  export const fetchFilteredPokemonList = async (selectedType) => {
+    try {
+      const response = await fetch(`https://pokeapi.co/api/v2/type/${selectedType}`);
+      const data = await response.json();
+      return data.pokemon.map((entry) => entry.pokemon);
+    } catch (error) {
+      console.error('Error fetching filtered Pokémon list:', error);
+      return [];
+    }
+  };
+  

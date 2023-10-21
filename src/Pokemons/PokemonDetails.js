@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import PokemonTypes from '../PokemonType/PokemonType';
-import { Card, Image } from '../PokemonCard/PokemonCard';
+import PokemonTypes from './PokemonType/PokemonType';
+import { Card, Image } from './PokemonCard';
 import { AiOutlineClose } from 'react-icons/ai';
 
 const PokemonDetails = ({ id, name, image, types, details}) => {

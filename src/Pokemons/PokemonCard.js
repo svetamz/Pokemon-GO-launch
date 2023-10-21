@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import PokemonTypes from '../PokemonType/PokemonType';
+import PokemonTypes from './PokemonType/PokemonType';
 
 
 const PokemonCard = ({ id, name, image, types, onClick }) => {
@@ -10,7 +10,7 @@ const PokemonCard = ({ id, name, image, types, onClick }) => {
       <Image src={image} alt={name} />
       <h3 style={{ margin: '5px' }}>{name}</h3>
       <TypesBlock>
-        <PokemonTypes types={types} />
+        {types && <PokemonTypes types={types} />}
       </TypesBlock>
     </Card>
   );

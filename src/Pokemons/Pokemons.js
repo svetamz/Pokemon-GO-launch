@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PokemonList from '../Pokemons/PokemonList/PokemonList'
-import PokemonDetails from '../Pokemons/PokemonDetails/PokemonDetails';
+import PokemonList from './PokemonList'
+import PokemonDetails from './PokemonDetails';
 import { styled } from 'styled-components';
 
 const Pokemons = () => {
