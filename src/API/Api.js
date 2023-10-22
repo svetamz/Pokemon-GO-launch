@@ -4,34 +4,31 @@ export async function getPokemonTypes(pokemonId) {
     return data.types.map(item => item.type.name);
   }
 
-  export const fetchPokemonList = async (url) => {
+  export const fetchPokemonList = async (url = 'https://pokeapi.co/api/v2/pokemon/?limit=12') => {
     const response = await fetch(url);
     const data = await response.json();
-    const newPokemonList = await Promise.all(data.results.map(async (pokemon) => {
-      const response = await fetch(pokemon.url);
-      const data = await response.json();
-      const types = await getPokemonTypes(data.id);
-      return { ...data, types };
-    }));
+    const newPokemonList = await Promise.all(data.results.map((pokemon) => fetchPokemonDetails(pokemon.url)));
     return { newPokemonList, nextUrl: data.next };
   };
   
-  export const fetchPokemonDetails = async (id) => {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
+  export const fetchPokemonDetails = async (url) => {
+    const response = await fetch(url);
     const data = await response.json();
-    return data;
-  };
-  
-  export const loadMorePokemon = async (nextUrl) => {
-    const response = await fetch(nextUrl);
-    const data = await response.json();
-    const newPokemonList = await Promise.all(data.results.map(async (pokemon) => {
-      const response = await fetch(pokemon.url);
-      const data = await response.json();
-      const types = await getPokemonTypes(data.id);
-      return { ...data, types };
-    }));
-    return { newPokemonList, nextUrl: data.next };
+    return {
+      id: data.id, 
+      name: data.name, 
+      image: data.sprites.front_default, 
+      types: data.types, 
+      details: [
+        {label: 'Attack', value: data.stats[0].base_stat}, 
+        {label: 'Defense', value: data.stats[1].base_stat},
+        {label: 'HP', value: data.stats[2].base_stat},
+        {label: 'SP Attack', value: data.stats[3].base_stat},
+        {label: 'SP Defence', value: data.stats[4].base_stat},
+        {label: 'Speed', value: data.stats[5].base_stat},
+        {label: 'Weight', value: data.weight},
+        {label: 'Total moves', value: data.moves.length}
+      ]}
   };
 
   export const getAllPokemonTypes = async () => {
@@ -44,14 +41,5 @@ export async function getPokemonTypes(pokemonId) {
     }
   };
 
-  export const fetchFilteredPokemonList = async (selectedType) => {
-    try {
-      const response = await fetch(`https://pokeapi.co/api/v2/type/${selectedType}`);
-      const data = await response.json();
-      return data.pokemon.map((entry) => entry.pokemon);
-    } catch (error) {
-      console.error('Error fetching filtered Pokémon list:', error);
-      return [];
-    }
-  };
+  
   

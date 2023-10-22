@@ -4,24 +4,24 @@ import PropTypes from 'prop-types';
 import PokemonTypes from './PokemonType/PokemonType';
 
 
-const PokemonCard = ({ id, name, image, types, onClick }) => {
+const PokemonCard = ({ pokemon, onClick }) => {
   return (
-    <Card onClick={() => onClick(id)}>
-      <Image src={image} alt={name} />
-      <h3 style={{ margin: '5px' }}>{name}</h3>
+    <Card onClick={() => onClick(pokemon.id)}>
+      <Image src={pokemon.image} alt={pokemon.name} />
+      <h3 style={{ margin: '5px' }}>{pokemon.name}</h3>
       <TypesBlock>
-        {types && <PokemonTypes types={types} />}
+        {pokemon.types && <PokemonTypes types={pokemon.types} />}
       </TypesBlock>
     </Card>
   );
 }
 
 PokemonCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  types: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
+  id: PropTypes.number,
+  name: PropTypes.string,
+  image: PropTypes.string,
+  types: PropTypes.array,
+  onClick: PropTypes.func,
 };
 
 export default PokemonCard;

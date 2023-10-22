@@ -7,11 +7,11 @@ import { styled } from 'styled-components';
 const PokemonTypes = ({ types }) => {
   return (
     <Types className="pokemon-types">
-      {types.map((type, index) => (
+      {types?.map((type) => (
         <Chip 
-          key={`type-${index}`}
-          className={type}
-          label={type}
+          key={type?.type?.name}
+          className={type?.type?.name}
+          label={type?.type?.name}
           style={{width:'80px', marginBottom:'10px'}}
         />
       ))}

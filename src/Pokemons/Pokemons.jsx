@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 
 const Pokemons = () => {
     const [selectedPokemon, setSelectedPokemon] = useState(null);
+
   
     return (
         <PokemonPage>
@@ -18,20 +19,8 @@ const Pokemons = () => {
                 <RightBlock>
                     {selectedPokemon && (
                         <PokemonDetails
-                            id={selectedPokemon.id}
-                            name={selectedPokemon.name}
-                            image={selectedPokemon.sprites.front_default}
-                            types={selectedPokemon.types.map((type) => type.type.name)}
-                            details={{
-                                Attack: selectedPokemon.stats[0].base_stat,
-                                Defense: selectedPokemon.stats[1].base_stat,
-                                HP: selectedPokemon.stats[2].base_stat,
-                                "SP Attack": selectedPokemon.stats[3].base_stat,
-                                "SP Defence": selectedPokemon.stats[4].base_stat,
-                                Speed: selectedPokemon.stats[5].base_stat,
-                                Weight: selectedPokemon.weight,
-                                "Total moves": selectedPokemon.moves.length,
-                            }}
+                            pokemon={selectedPokemon}
+                            onClose={() => setSelectedPokemon(null)}
                         />
                     )}
                 </RightBlock>
