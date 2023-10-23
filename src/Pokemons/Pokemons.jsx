@@ -35,6 +35,7 @@ const PokemonPage = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 1440px;
   @media (max-width: 768px){
     align-items:center;
   }
@@ -60,6 +61,7 @@ export const RightBlock = styled(LeftBlock)`
 `
 const Content = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: row;
   align-items: center;
   @media (max-width: 768px){
